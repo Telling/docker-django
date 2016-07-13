@@ -15,7 +15,8 @@ create_superuser() {
 }
 
 if [ "$1" == "runserver" ]; then
-    dockerize -wait tcp://db:5432
+    echo "Waiting for database"
+    dockerize -wait tcp://"$DJANGO_DB_HOST":"$DJANGO_DB_PORT"
     echo "Running migrations"
     # Can we always safely appy migrations?
     # Apply database migrations
@@ -30,7 +31,8 @@ if [ "$1" == "runserver" ]; then
 fi
 
 if [ "$1" == "nomigrate" ]; then
-    dockerize -wait tcp://db:5432
+    echo "Waiting for database"
+    dockerize -wait tcp://"$DJANGO_DB_HOST":"$DJANGO_DB_PORT"
     echo "Running collectstatic"
     python manage.py collectstatic --noinput
 
@@ -40,12 +42,14 @@ if [ "$1" == "nomigrate" ]; then
 fi
 
 if [ "$1" == "makemigrations" ];then
-    dockerize -wait tcp://db:5432
+    echo "Waiting for database"
+    dockerize -wait tcp://"$DJANGO_DB_HOST":"$DJANGO_DB_PORT"
     exec python manage.py "$@"
 fi
 
-if [ "$2" == "loadtestdata" ];then
-    dockerize -wait tcp://db:5432
+if [ "$1" == "loadtestdata" ];then
+    echo "Waiting for database"
+    dockerize -wait tcp://"$DJANGO_DB_HOST":"$DJANGO_DB_PORT"
     exec python manage.py "$@"
 fi
 
