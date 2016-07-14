@@ -17,6 +17,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN mkdir /code
 WORKDIR /code
+
+ENV PYTHONUNBUFFERED 1
 ENV DJANGO_VERSION 1.9.7
 RUN pip install Django==$DJANGO_VERSION
 
