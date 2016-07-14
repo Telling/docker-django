@@ -1,4 +1,4 @@
-FROM python:3.5.2
+FROM python:2.7.12
 MAINTAINER Stephan Telling <st@telling.xyz>
 
 RUN apt-get update && apt-get install -y \
