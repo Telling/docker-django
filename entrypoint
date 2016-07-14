@@ -38,7 +38,7 @@ if [ "$1" == "nomigrate" ]; then
 
     create_superuser
 
-    exec python manage.py "$@"
+    exec python manage.py runserver "$2"
 fi
 
 if [ "$1" == "makemigrations" ];then
