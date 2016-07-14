@@ -22,8 +22,8 @@ ENV PYTHONUNBUFFERED 1
 ENV DJANGO_VERSION 1.9.7
 RUN pip install Django==$DJANGO_VERSION
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY entrypoint /entrypoint
+RUN chmod +x /entrypoint
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint"]
 CMD ["runserver", "0.0.0.0:8000"]
