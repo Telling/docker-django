@@ -26,4 +26,4 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["runserver" "0.0.0.0:8000"]
+CMD ["runserver", "0.0.0.0:8000"]
