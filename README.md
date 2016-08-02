@@ -40,7 +40,7 @@ docker run --rm --log-driver none -v $(pwd)/mysite:/code telling/django:1.9.7-py
 
 I've recently used this to get a local development environment for the [bornhack](https://github.com/bornhack/bornhack-website) website, see below.
 
-I created a very simple dockerfile, which simply copies the requirements.txt files, and installs said requirements, _Dockerfile_: 
+I created a very simple dockerfile, which copies the requirements files, and installs said requirements, _Dockerfile_: 
 
 ```dockerfile
 FROM telling/django:1.9.7-py2
