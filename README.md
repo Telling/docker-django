@@ -22,8 +22,8 @@ If environment variables `DJANGO_SUPERUSER_*` are set, `runserver` and `nomigrat
 - `DJANGO_SUPERUSER_NAME`
 - `DJANGO_SUPERUSER_MAIL`
 - `DJANGO_SUPERUSER_PASS`
-- `DOCKERIZE_VERSION`
 - `PYTHONUNBUFFERED`
+- `DOCKERIZE_VERSION`
 - `DJANGO_VERSION`
 
 # Usage
@@ -38,9 +38,9 @@ docker run --rm --log-driver none -v $(pwd)/mysite:/code telling/django:1.9.7-py
 
 # docker-compose
 
-I've recently used this to get a local development environment for the [bornhack](https://github.com/bornhack/bornhack-website) website, see below.
+I've recently used this to get a local development environment for the [bornhack](https://github.com/bornhack/bornhack-website) website.
 
-I created a very simple dockerfile, which copies the requirements files, and installs said requirements, _Dockerfile_: 
+I created a very simple dockerfile, which copies the requirements files and installs said requirements, _Dockerfile_: 
 
 ```dockerfile
 FROM telling/django:1.9.7-py2
@@ -74,9 +74,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_DB_NAME=bornhack_dev
-      - DJANGO_DB_USER=bornhack
-      - DJANGO_DB_PASS=bornhack
       - DJANGO_DB_HOST=postgres
       - DJANGO_DB_PORT=5432
       - DJANGO_SUPERUSER_NAME=bornhack
@@ -85,6 +82,8 @@ services:
       - DJANGO_SETTINGS_MODULE=bornhack.settings.development
 
 ```
+
+Change the settings file `bornhack/settings/development.py` and replace `'HOST': 'localhost',` with `'HOST': 'postgres',`. Now copy the environment file: `cp bornhack/settings/env.dist bornhack/settings/.env`
 
 We end with a tree structure like:
 
@@ -109,6 +108,6 @@ We end with a tree structure like:
 
 Then we can start hacking on the bornhack website by simply doing:
 
-- docker-compose up -d
+- docker-compose up -d --build
 
 Go to [localhost:8000](localhost:8000) and see the bornhack website in all its beauty.
