@@ -19,7 +19,7 @@ RUN mkdir /code
 WORKDIR /code
 
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_VERSION 1.9.7
+ENV DJANGO_VERSION 1.10.1
 RUN pip install Django==$DJANGO_VERSION
 
 COPY entrypoint /entrypoint
