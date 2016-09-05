@@ -1,6 +1,15 @@
 FROM python:2.7.12
 MAINTAINER Stephan Telling <st@telling.xyz>
 
+ENV DOCKERIZE_VERSION="v0.2.0" \
+    PYTHONUNBUFFERED="1" \
+    DJANGO_VERSION="1.9.7" \
+    DJANGO_DB_HOST="" \
+    DJANGO_DB_PORT="" \
+    DJANGO_SUPERUSER_NAME="" \
+    DJANGO_SUPERUSER_MAIL="" \
+    DJANGO_SUPERUSER_PASS=""
+
 RUN apt-get update && apt-get install -y \
         gcc \
         gettext \
@@ -10,7 +19,6 @@ RUN apt-get update && apt-get install -y \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV DOCKERIZE_VERSION v0.2.0
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
@@ -18,8 +26,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 RUN mkdir /code
 WORKDIR /code
 
-ENV PYTHONUNBUFFERED 1
-ENV DJANGO_VERSION 1.9.7
 RUN pip install Django==$DJANGO_VERSION
 
 COPY entrypoint /entrypoint
