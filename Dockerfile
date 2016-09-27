@@ -3,7 +3,7 @@ MAINTAINER Stephan Telling <st@telling.xyz>
 
 ENV DOCKERIZE_VERSION="v0.2.0" \
     PYTHONUNBUFFERED="1" \
-    DJANGO_VERSION="1.9.7" \
+    DJANGO_VERSION="1.9.10" \
     DJANGO_DB_HOST="" \
     DJANGO_DB_PORT="" \
     DJANGO_SUPERUSER_NAME="" \
