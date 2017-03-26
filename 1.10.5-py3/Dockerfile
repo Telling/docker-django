@@ -1,7 +1,7 @@
-FROM python:3.5.2
-MAINTAINER Stephan Telling <st@telling.xyz>
+FROM python:3.6.0
+LABEL maintainer "Stephan Telling <st@telling.xyz>"
 
-ENV DOCKERIZE_VERSION="v0.2.0" \
+ENV DOCKERIZE_VERSION="v0.3.0" \
     PYTHONUNBUFFERED="1" \
     DJANGO_VERSION="1.10.5" \
     DJANGO_DB_HOST="" \
